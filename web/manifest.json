@@ -1,6 +1,6 @@
 {
-    "name": "river_pod",
-    "short_name": "river_pod",
+    "name": "to_do_list",
+    "short_name": "to_do_list",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
