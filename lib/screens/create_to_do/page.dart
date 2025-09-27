@@ -12,7 +12,7 @@ class CreateTodoPage extends HookConsumerWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Create To-Do')),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32.0),
+        padding: const EdgeInsets.symmetric(horizontal: 32),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,11 +32,11 @@ class CreateTodoPage extends HookConsumerWidget {
             TextFormField(
               decoration: const InputDecoration(labelText: 'To-Do'),
             ),
-            SizedBox(height: 16.0), // スペースを追加
-            Container(
+            const SizedBox(height: 16), // スペースを追加
+            DecoratedBox(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: TextFormField(
                 decoration: const InputDecoration(
@@ -46,7 +46,7 @@ class CreateTodoPage extends HookConsumerWidget {
                 maxLines: null,
               ),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 // 保存処理をここに追加
