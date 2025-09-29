@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:to_do_list/data/entity/to_do/app_entity.dart';
 
 class CreateTodoPage extends HookConsumerWidget {
   const CreateTodoPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tag = useState('勉強'); // 初期値をここで設定
+    final category = useState<TodoCategory>(TodoCategory.study);
+    // 初期値をここで設定
 
     return Scaffold(
       appBar: AppBar(title: const Text('Create To-Do')),
@@ -16,23 +19,21 @@ class CreateTodoPage extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DropdownButton<String>(
-              value: tag.value, // ここで現在の選択状態を指定
+            DropdownButton(
+              value: category.value,
               onChanged: (newValue) {
                 if (newValue != null) {
-                  tag.value = newValue; // useStateを更新
+                  category.value = newValue; // useStateを更新
                 }
               },
-              items: const [
-                DropdownMenuItem(value: '勉強', child: Text('勉強')),
-                DropdownMenuItem(value: '運動', child: Text('運動')),
-                DropdownMenuItem(value: '睡眠', child: Text('睡眠')),
-              ],
+              items: TodoCategory.values
+                  .map((o) => DropdownMenuItem(value: o, child: Text(o.label)))
+                  .toList(),
             ),
             TextFormField(
               decoration: const InputDecoration(labelText: 'To-Do'),
             ),
-            const SizedBox(height: 16), // スペースを追加
+            const Gap(10),
             DecoratedBox(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
@@ -46,7 +47,7 @@ class CreateTodoPage extends HookConsumerWidget {
                 maxLines: null,
               ),
             ),
-            const SizedBox(height: 16),
+            const Gap(10),
             ElevatedButton(
               onPressed: () {
                 // 保存処理をここに追加
