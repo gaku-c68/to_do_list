@@ -30,8 +30,17 @@ class CreateTodoPage extends HookConsumerWidget {
                   .map((o) => DropdownMenuItem(value: o, child: Text(o.label)))
                   .toList(),
             ),
-            TextFormField(
-              decoration: const InputDecoration(labelText: 'To-Do'),
+            Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              child: TextFormField(
+                decoration: const InputDecoration(labelText: 'To-Do'),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return '内容を入力してください';
+                  }
+                  return null; // バリデーションが成功した場合はnullを返す
+                },
+              ),
             ),
             const Gap(10),
             DecoratedBox(
