@@ -10,6 +10,7 @@ class CreateTodoPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final category = useState<TodoCategory>(TodoCategory.study);
+    final formKey = useMemoized(GlobalKey<FormState>.new);
     // 初期値をここで設定
 
     return Scaffold(
@@ -31,6 +32,7 @@ class CreateTodoPage extends HookConsumerWidget {
                   .toList(),
             ),
             Form(
+              key: formKey,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               child: TextFormField(
                 decoration: const InputDecoration(labelText: 'To-Do'),
