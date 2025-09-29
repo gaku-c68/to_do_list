@@ -61,6 +61,11 @@ class CreateTodoPage extends HookConsumerWidget {
             const Gap(10),
             ElevatedButton(
               onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(const SnackBar(content: Text('入力完了しました')));
+                }
                 // 保存処理をここに追加
               },
               child: const Icon(Icons.save),
